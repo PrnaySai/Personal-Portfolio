@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio Website</title>
+    <link rel="stylesheet" href="portfolio.css">
+    <link rel="stylesheet" href="portfolio.js">
+    <script src="https://kit.fontawesome.com/abc8806947.js" crossorigin="anonymous"></script>
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0; /* Set a consistent background color */
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Navigation Menu */
+        nav ul {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            color: white;
+            list-style-type: none;
+            padding: 10px 20px;
+            margin: 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        nav ul li {
+            margin: 0 10px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #00bfa5;
+        }
+        
+        /* Header Text */
+        .header-text {
+            margin-top: 100px;
+            text-align: center;
+            color: #333;
+        }
+        
+        .header-text h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .header-text h1 span {
+            color: #00bfa5;
+        }
+        
+        /* Sections */
+        .section {
+            padding: 50px 0;
+        }
+        
+        /* About Section */
+        #about .sub-title, #projects .sub-title, #education .sub-title, #contact .sub-title {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .tab-titles {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .tab-links {
+            margin: 0 10px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+        
+        .active-link {
+            font-weight: bold;
+            color: #00bfa5;
+        }
+        
+        .tab-contents {
+            display: none;
+        }
+        
+        .active-tab {
+            display: block;
+        }
+        
+        .tab-contents ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .tab-contents ul li {
+            margin-bottom: 10px;
+        }
+        
+        /* Projects Section */
+        .projects-list {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        
+        .project-item {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-bottom: 20px;
+            width: 45%;
+        }
+        
+        .project-item i {
+            font-size: 36px;
+            color: #00bfa5;
+            margin-bottom: 10px;
+        }
+        
+        .project-item h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .project-item p {
+            font-size: 16px;
+            color: #555;
+        }
+        
+        /* Education Section */
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+        
+        .timeline-items {
+            position: relative;
+        }
+        
+        .timeline-item {
+            padding: 10px 0;
+            position: relative;
+            text-align: center;
+        }
+        
+        .timeline-item .timeline-date {
+            font-size: 18px;
+            color: #888;
+            margin-bottom: 5px;
+        }
+        
+        .timeline-item .timeline-content {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            width: 60%;
+        }
+        
+        .timeline-item h3 {
+            font-size: 20px;
+        }
+        
+        .timeline-item p {
+            margin: 0;
+            font-size: 16px;
+            color: #555;
+        }
+        
+        /* Contact Section */
+        .contact-left, .contact-right {
+            width: 48%;
+        }
+        
+        .contact-left {
+            margin-right: 4%;
+        }
+        
+        .contact-left p {
+            font-size: 18px;
+            color: #555;
+        }
+        
+        .contact-left i {
+            color: #00bfa5;
+            margin-right: 10px;
+        }
+        
+        .contact-right form {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .contact-right form input, .contact-right form textarea {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .contact-right form button {
+            padding: 10px;
+            background: #00bfa5;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .contact-right form button:hover {
+            background: #009f8b;
+        }
+        
+        #msg {
+            margin-top: 10px;
+            font-size: 16px;
+            color: green;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+        }
+        
+        .copyright i {
+            color: #e25555;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                position: fixed;
+                top: 0;
+                right: -200px;
+                height: 100%;
+                width: 200px;
+                background: #333;
+                transition: right 0.3s;
+            }
+        
+            nav ul li {
+                margin: 20px 0;
+            }
+        
+            .fa-bars, .fa-xmark {
+                display: block;
+            }
+        
+            .header-text h1 {
+                font-size: 36px;
+            }
+        
+            .header-text p {
+                font-size: 20px;
+            }
+        
+            .projects-list {
+                flex-direction: column;
+            }
+        
+            .project-item {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        
+            .contact-left, .contact-right {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        
+            .contact-left {
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Menu -->
+    <nav>
+        <ul id="sidemenu">
+            <li><a href="#header" onclick="scrollToSection('header')">Home</a></li>
+            <li><a href="#about" onclick="scrollToSection('about')">About</a></li>
+            <li><a href="#projects" onclick="scrollToSection('projects')">Projects</a></li>
+            <li><a href="#education" onclick="scrollToSection('education')">Education</a></li>
+            <li><a href="#contact" onclick="scrollToSection('contact')">Contact</a></li>
+            <i class="fa-solid fa-xmark" onclick="closemenu()"></i>
+        </ul>
+        <i class="fa-solid fa-bars" onclick="openmenu()"></i>
+    </nav>
+
+    <!-- Header Section -->
+    <div id="header" class="section">
+        <div class="container">
+            <div class="header-text">
+                <h1>Hi, I am <span>Pranay Sai</span></h1>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Me Section -->
+    <div id="about" class="section">
+        <div class="container">
+            <div class="row">
+                <div class="about-col-1">
+                    
+                </div>
+                <div class="about-col-2">
+                    <h1 class="sub-title">About Me</h1>
+                    <p>
+                        As a B.Tech CSE student, I possess a robust understanding of programming languages such as C, C++, Python, and HTML, which extends beyond theoretical knowledge to practical application in real-world projects. I find great satisfaction in solving challenging problems, particularly those that require innovative solutions. Beyond programming proficiency, my skills encompass a proactive approach to staying updated with the latest technological advancements. I am consistently eager to learn and adept at applying my knowledge in diverse projects, driven by a strong passion for continuous growth in the field of computer science.
+                        <br><br>
+                        Enthusiastic about technology, I am dedicated to contributing meaningfully to any project I undertake. My creativity and analytical thinking allow me to approach problems from various angles, ensuring comprehensive and effective solutions. With a commitment to lifelong learning, I am always on the lookout for new challenges and opportunities to expand my skill set. I look forward to leveraging my programming expertise and problem-solving abilities to make impactful contributions in the field of computer science.
+                    </p>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Projects Section -->
+    <div id="projects" class="section">
+        <div class="container">
+            <h1 class="sub-title">My Projects</h1>
+            <div class="projects-list">
+                <div class="project-item">
+                    <i class="fas fa-code"></i>
+                    <h2>Cricket Score Board using C Language</h2>
+                    <p>Role: Developer<br>
+                    Description:<br>
+                    Implemented a cricket score board application in C, managing variables for runs, wickets, overs, and extras. Utilized functions for input and formatted display using printf. Applied control structures for dynamic updates based on match progress.</p>
+                </div>
+                <div class="project-item">
+                    <i class="fas fa-calculator"></i>
+                    <h2>GPA & CGPA Calculator Using C++ Language</h2>
+                    <p>Role: Developer<br>
+                    Description:<br>
+                    Developed a GPA and CGPA calculator in C++, assigning initial values and implementing functions for grade and credit input via scanf. Created formatted output functions for GPA and CGPA using printf. Integrated control structures for calculating and updating GPA and CGPA dynamically.</p>
+                </div>
+                <div class="project-item">
+                    <i class="fas fa-gamepad"></i>
+                    <h2>Sudoku Game Solver</h2>
+                    <p>Role: Developer<br>
+                    Description:<br>
+                    The Sudoku game solver is a Python program that uses backtracking and constraint propagation algorithms to solve Sudoku puzzles automatically. It takes an unsolved Sudoku grid as input, checks for conflicts, and recursively tries different numbers until a solution is found. This process ensures that each number in the grid meets Sudoku rules (unique in rows, columns, and 3x3 subgrids). The solver handles varying levels of puzzle complexity, providing a clear example of how computational methods can be applied to logical problem-solving tasks.</p>
+                </div>
+                <div class="project-item">
+                    <i class="fas fa-book"></i>
+                    <h2>Online Bookstore Management system</h2>
+                    <p>Role: Developer<br>
+                    Description:<br>
+                    The Online Bookstore Management System is a web-based application for efficiently managing book sales online. It includes user authentication, a dynamic catalog for browsing books by genre and author, shopping cart functionality for secure purchases, and order management with status tracking. Admin features cover inventory management, order fulfillment, and user administration. This system ensures data integrity through effective database management and enhances user experience with a user-friendly interface.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Education Section -->
+    <div id="education" class="section">
+        <div class="container">
+            <h1 class="sub-title">My Education</h1>
+            <div class="timeline">
+                <div class="timeline-items">
+                    <div class="timeline-item">
+                        <div class="timeline-date">2010 - 2020</div>
+                        <div class="timeline-content">
+                            <h3>Matriculation</h3>
+                            <p>Bhashyam High School</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2020 - 2022</div>
+                        <div class="timeline-content">
+                            <h3>Intermediate</h3>
+                            <p>Bhashyam Junior College</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2022 - 2026</div>
+                        <div class="timeline-content">
+                            <h3>Bachelor of Technology</h3>
+                            <p>SRM University - Andhra Pradesh</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div id="contact" class="section">
+        <div class="container">
+            <h1 class="sub-title">Contact Me</h1>
+            <div class="row">
+                <div class="contact-left">
+                    <p><i class="fas fa-paper-plane"></i> pranaysai_penumuchu@srmap.edu.in</p>
+                    <p><i class="fas fa-phone"></i> +91 - 9701243163</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-Instagram"></i></a>
+                    </div>
+                </div>
+                <div class="contact-right">
+                    <form id="contact-form">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+                        <button type="submit">Send Message</button>
+                        <span id="msg"></span>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <p class="copyright">Made with <i class="fas fa-heart"></i> by Pranay Sai</p>
+    </footer>
+
+    <script>
+        // JavaScript for navigation menu toggle
+        function openmenu() {
+            document.getElementById("sidemenu").style.right = "0";
+        }
+        
+        function closemenu() {
+            document.getElementById("sidemenu").style.right = "-200px";
+        }
+        
+        // JavaScript for tabbed content
+        const tabLinks = document.getElementsByClassName("tab-links");
+        const tabContents = document.getElementsByClassName("tab-contents");
+        
+        function opentab(tabname) {
+            for (let tabLink of tabLinks) {
+                tabLink.classList.remove("active-link");
+            }
+            for (let tabContent of tabContents) {
+                tabContent.classList.remove("active-tab");
+            }
+            event.currentTarget.classList.add("active-link");
+            document.getElementById(tabname).classList.add("active-tab");
+        }
+        
+        // Function to scroll to a section
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
